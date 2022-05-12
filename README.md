@@ -6,3 +6,11 @@
 ```shell
 GOOS=js GOARCH=wasm go build -o main.wasm
 ```
+复制运行环境到本地
+```
+cp "$(go env GOROOT)/misc/wasm/wasm_exec.js"  .
+```
+## 启动项目
+```
+live-server
+```
