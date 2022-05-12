@@ -14,3 +14,6 @@ cp "$(go env GOROOT)/misc/wasm/wasm_exec.js"  .
 ```
 live-server
 ```
+
+# doc
+https://pkg.go.dev/text/template#hdr-Pipelines
