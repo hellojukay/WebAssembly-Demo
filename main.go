@@ -12,7 +12,7 @@ func add(this js.Value, args []js.Value) interface{} {
 	return args[0].Float() + args[1].Float()
 }
 
-// 更具 map 渲染字符串
+// 根据模板和数据，渲染字符串
 func render(this js.Value, args []js.Value) interface{} {
 	var text = args[0].String()
 	var jsonText = args[1].String()
