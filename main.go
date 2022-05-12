@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"strings"
 	"syscall/js"
+	"time"
 )
 
 func add(this js.Value, args []js.Value) interface{} {
@@ -15,9 +16,13 @@ func add(this js.Value, args []js.Value) interface{} {
 func render(this js.Value, args []js.Value) interface{} {
 	var text = args[0].String()
 	var jsonText = args[1].String()
-	var data = make(map[string]string)
+	var data = make(map[string]interface{})
 	if err := json.Unmarshal([]byte(jsonText), &data); err != nil {
 		return err.Error()
+	}
+	data["builtin"] = 1000
+	data["builtinfunc"] = func() string {
+		return time.Now().Format(`2006-01-02T15:04:05.000Z`)
 	}
 	t := template.New("test")
 	t, err := t.Parse(text)

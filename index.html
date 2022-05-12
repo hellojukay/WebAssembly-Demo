@@ -1,8 +1,8 @@
 <html>
-<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
-        <script src="wasm_exec.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="wasm_exec.js"></script>     
         <script>
             const go = new Go();
             WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
@@ -11,22 +11,28 @@
         </script>
     </head>
     <body>
-        <textarea name="" id="input" cols="30" rows="10"></textarea>
-        <button></button>
+      <div id="app">
+        <textarea name="" v-model="input" cols="30" rows="10"></textarea>
+        <textarea name="" v-model="data" cols="30" rows="10"></textarea>
+        <br/>
+        <button v-on:click="convert">渲染模板</button>
+        <pre> {{result}} </pre>
+      </div>
     </body>
-</html>
-=======
-  <head>
-    <meta charset="utf-8">
-    <script src="./wasm_exec.js"></script>
     <script>
-      const go = new Go()
-      WebAssembly.instantiateStreaming(fetch("fib.wasm"), go.importObject).
-        then((result) => {
-          go.run(result.instance)
-        })
+      new Vue({
+        el: '#app',
+        data: {
+          result: '',
+          data: '{"Flag": false}',
+          input: '{{ if .Flag  }} 通过 {{else}}不通过{{end}} {{call .builtinfunc}}'
+        },
+        methods: {
+          convert() {
+            // template 方法来自于  WebAssembly 模块
+            this.result = template(this.input,this.data)
+          }
+        },
+      })
     </script>
-  </head>
-  <body></body>
 </html>
->>>>>>> 3b5cfe8ffff4f6e12c94fe8df0b63e8f194f296d
