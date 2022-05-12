@@ -9,13 +9,19 @@
                 go.run(result.instance);
             });
         </script>
+        <style>
+          textarea,pre {
+            width: 500px;
+            font-size: 25px;
+          }
+        </style>
     </head>
     <body>
       <div id="app">
         <textarea name="" v-model="input" cols="30" rows="10"></textarea>
         <textarea name="" v-model="data" cols="30" rows="10"></textarea>
         <br/>
-        <button v-on:click="convert">渲染模板</button>
+        <button v-on:click="convert">执行</button>
         <pre> {{result}} </pre>
       </div>
     </body>
