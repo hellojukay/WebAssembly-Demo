@@ -14,7 +14,7 @@ func fib(this js.Value, args []js.Value) any {
 		return 1
 	}
 	// 这里类型转换， any 转 int
-	return add(this, []js.Value{js.ValueOf(n - 1)}).(int) + add(this, []js.Value{js.ValueOf(n - 2)}).(int)
+	return fib(this, []js.Value{js.ValueOf(n - 1)}).(int) + fib(this, []js.Value{js.ValueOf(n - 2)}).(int)
 }
 
 func add(this js.Value, args []js.Value) any {
