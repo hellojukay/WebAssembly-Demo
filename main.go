@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func add(this js.Value, args []js.Value) any {
+func fib(this js.Value, args []js.Value) any {
 	var n = args[0].Int()
 	if n <= 2 {
 		return 1
@@ -17,7 +17,7 @@ func add(this js.Value, args []js.Value) any {
 	return add(this, []js.Value{js.ValueOf(n - 1)}).(int) + add(this, []js.Value{js.ValueOf(n - 2)}).(int)
 }
 
-func fib(this js.Value, args []js.Value) any {
+func add(this js.Value, args []js.Value) any {
 	return args[0].Float() + args[1].Float()
 }
 
@@ -48,7 +48,7 @@ func render(this js.Value, args []js.Value) any {
 func main() {
 	done := make(chan int, 0)
 	js.Global().Set("addFun", js.FuncOf(add))
-	js.Global().Set("fib", js.FuncOf(add))
+	js.Global().Set("fib", js.FuncOf(fib))
 	js.Global().Set("template", js.FuncOf(render))
 	js.Global().Set("name", "licong")
 	<-done
